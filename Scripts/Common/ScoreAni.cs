@@ -21,15 +21,15 @@ public class ScoreAni : MonoBehaviour
         int score = int.Parse(scoreText.text);
         Debug.Log(score);
 
-        if (score < 200)
+        if (score < 2000)
         {
             animator.Play("RankC");
         }
-        else if (score < 400)
+        else if (score < 4000)
         {
             animator.Play("RankB");
         }
-        else if (score < 600)
+        else if (score < 7000)
         {
             animator.Play("RankA");
         }

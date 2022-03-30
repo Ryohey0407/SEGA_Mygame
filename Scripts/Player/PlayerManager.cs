@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HP == 0)
+        if(HP <= 0)
         {
             Instantiate(DeathEffect, this.transform.position + transform.up * 1f, this.transform.rotation);
             Destroy(gameObject);
@@ -132,14 +132,14 @@ public class PlayerManager : MonoBehaviour
         //ジャンプする
         if (IsGround)
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetButtonDown("Jump"))
             {
                 JumpUp();
             }
         }
         else if (!IsGround && rb.velocity.y < 0 && Wing >= 1)
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetButtonDown("Jump"))
             {
                 MoreJumpUp();
             }
@@ -149,7 +149,7 @@ public class PlayerManager : MonoBehaviour
             state = "JUMP";
         }
         //ジャンプボタン離して降下
-        if (Input.GetKeyUp("space") && rb.velocity.y > 0)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
             JumpDown();
         }
@@ -159,7 +159,7 @@ public class PlayerManager : MonoBehaviour
             state = "FALL";
         }
         //ショット
-        if (Input.GetKeyDown("left ctrl"))
+        if (Input.GetButtonDown("Fire1"))
         {
             audioSource.PlayOneShot(PlayerAttackSE);
             Instantiate(bullet, transform.position + new Vector3(transform.localScale.x* 1f, 0f, 0f), transform.rotation);
@@ -316,11 +316,11 @@ public class PlayerManager : MonoBehaviour
         //角度センサー右
         Vector3 GNDrightstartVec = transform.position + transform.right * 0.5f * temp.x;
         Vector3 GNDrightendVec = GNDrightstartVec - transform.up * 1.5f;
-        //Debug.DrawLine(GNDrightstartVec, GNDrightendVec, Color.yellow);
+        Debug.DrawLine(GNDrightstartVec, GNDrightendVec, Color.yellow);
         //角度センサー左
         Vector3 GNDleftstartVec = transform.position + transform.right * -0.5f * temp.x;
         Vector3 GNDleftendVec = GNDleftstartVec - transform.up * 1.5f;
-        //Debug.DrawLine(GNDleftstartVec, GNDleftendVec, Color.red);
+        Debug.DrawLine(GNDleftstartVec, GNDleftendVec, Color.red);
 
         //RaycastHit2Dで地面との法線ベクトルを取得
         RaycastHit2D groundrightHit = Physics2D.Linecast(GNDrightstartVec, GNDrightendVec, BlockLayer);
@@ -493,9 +493,13 @@ public class PlayerManager : MonoBehaviour
                 Wing = MaxWing;
             }
         }
+        if (other.gameObject.tag == "Treasure")
+        {
+            audioSource.PlayOneShot(GetItemSE);
+        }
         if (other.gameObject.tag == "Water")
         {
-            Instantiate(WaterEffect, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(WaterEffect, new Vector2(transform.position.x,transform.position.y - 0.5f), Quaternion.Euler(0, 0, 0));
         }
         if ((other.gameObject.tag == "GAME CLEAR"))
         {

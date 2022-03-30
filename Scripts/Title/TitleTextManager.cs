@@ -14,11 +14,12 @@ public class TitleTextManager : MonoBehaviour
     [SerializeField] AudioClip Decision;
 
     string state;
-
+    private float beforeVertical;
 
     // Start is called before the first frame update
     void Start()
     {
+        state = "GAME START";
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -26,14 +27,17 @@ public class TitleTextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("down"))
+        float y = Input.GetAxis("Vertical");
+        Debug.Log(y);
+
+        if ( y < 0 && beforeVertical == 0.0f)
         {
             state = "OPTION";
             animator.Play("option");
             audioSource.PlayOneShot(Select);
             textBack.GetComponent<RectTransform>().localScale = new Vector3(0, -1, 1);
         }
-        if(Input.GetKeyDown("up"))
+        if( y > 0 && beforeVertical == 0.0f)
         {
             state = "GAME START";
             animator.Play("gamestart");
@@ -41,7 +45,9 @@ public class TitleTextManager : MonoBehaviour
             textBack.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
         }
 
-        if(Input.GetKeyDown("space"))
+        beforeVertical = y;
+
+        if (Input.GetButtonDown("Jump"))
         {
             if(state == "GAME START")
             {
@@ -50,7 +56,7 @@ public class TitleTextManager : MonoBehaviour
             }
             else if(state == "OPTION")
             {
-
+                Application.Quit();
             }
         }
     }

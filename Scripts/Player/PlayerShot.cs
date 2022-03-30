@@ -11,6 +11,9 @@ public class PlayerShot : MonoBehaviour
 	float pl_x;
 	float pl_y;
 
+	AudioSource audioSource;
+	[SerializeField] AudioClip Pan;
+
 
 	Rigidbody2D rb;
 	ContactFilter2D filter2d;
@@ -18,6 +21,7 @@ public class PlayerShot : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		audioSource = GetComponent<AudioSource>();
 		player = GameObject.FindWithTag("Player");
 		rb = GetComponent<Rigidbody2D>();
 		this.transform.localScale =new Vector3(player.transform.localScale.x,1,1);
@@ -67,6 +71,10 @@ public class PlayerShot : MonoBehaviour
 		if (col.gameObject)
 		{
 			rb.velocity = new Vector2(0, 0);
+			if (col.gameObject.tag == "Enemy")
+			{
+				audioSource.PlayOneShot(Pan);
+			}
 		}
 	}
 

@@ -49,7 +49,7 @@ public class TestEnemy : MonoBehaviour
             Shot2();
         }
 
-        if (HP == 0)
+        if (HP <= 0)
         {
             gameManager.AddScore(100);
             Instantiate(DeathEffect, this.transform.position, this.transform.rotation);
