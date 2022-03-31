@@ -3,11 +3,21 @@
 私の制作物を見てくださりありがとうございます。
 Unityのファイルをアップロードしようとしたところ、ファイルのサイズが大きくアップロードできないとのことなので、スクリプトのみアップロードしました。
 
-すべてのファイル & ビルドしたゲーム　→　GoogleDrive : https://drive.google.com/drive/folders/1REra05CSTBQhtcN7u32RZLRfcDH4jUVz?usp=sharing
+すべてのファイル & ビルドしたゲーム  
+→　GoogleDrive : https://drive.google.com/drive/folders/1REra05CSTBQhtcN7u32RZLRfcDH4jUVz?usp=sharing
 
 キーボードとデュアルショックに対応
 
 ＜操作＞
 キーボード横方向 / 十字ボタン横　　移動  
-SPACEキー / ×ボタン　　ジャンプ、決定
-LeftCtrlキー / □ボタン　　攻撃　
+SPACEキー / ×ボタン　　ジャンプ、決定  
+LeftCtrlキー / □ボタン　　攻撃  
+
+＜現在確認している不具合＞  
+・接地判定が上手くいかない場合がある  
+・PCスペックに依存した挙動  
+
+＜今後の目標＞
+・複数ステージの実装  
+・1人プレイ用のストーリーモードの実装  
+・2人プレイ用のスコアアタックモードの実装  
