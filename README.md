@@ -6,7 +6,7 @@ Unityのファイルをアップロードしようとしたところ、ファイ
 すべてのファイル & ビルドしたゲーム  
 →　GoogleDrive : https://drive.google.com/drive/folders/1REra05CSTBQhtcN7u32RZLRfcDH4jUVz?usp=sharing
 
-キーボードとデュアルショックに対応
+キーボードとデュアルショック４に対応
 
 ＜操作＞
 キーボード横方向 / 十字ボタン横　　移動  
